@@ -445,7 +445,7 @@ const MemoryCardGame = () => {
       </Grid>
       <Box sx={{ mt: 2, textAlign: "center" }}>
      
-<PixelButton onClick={() => { handleSaveNewGame(); handleNewGame(); }} sx={{ mt: 2 }}>
+      <PixelButton onClick={() => { handleSaveNewGame(); handleNewGame(); }} sx={{ mt: 2 }}>
           New Game
         </PixelButton>
       </Box>

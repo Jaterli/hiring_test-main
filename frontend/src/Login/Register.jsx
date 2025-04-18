@@ -1,18 +1,23 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 import styles from './Register.module.css';
 
 const Register = () => {
   const [formData, setFormData] = useState({ username: '', password: '' });
-  const [message, setMessage] = useState('');
+  const [message, setMessage] = useState({ text: '', isError: false });
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       const response = await axios.post('http://localhost:5000/api/users/register', formData);
-      setMessage(response.data.message);
+      setMessage({ text: response.data.message, isError: false });
+      setFormData({ username: '', password: '' });
     } catch (error) {
-      setMessage(error.response?.data.message || 'Error registering');
+      setMessage({ 
+        text: error.response?.data.message || 'Error registering', 
+        isError: true 
+      });
     }
   };
 
@@ -26,6 +31,7 @@ const Register = () => {
           value={formData.username}
           onChange={(e) => setFormData({ ...formData, username: e.target.value })}
           className={styles.input}
+          required
         />
         <input
           type="password"
@@ -33,11 +39,19 @@ const Register = () => {
           value={formData.password}
           onChange={(e) => setFormData({ ...formData, password: e.target.value })}
           className={styles.input}
+          required
         />
         <button type="submit" className={styles.button}>
           Register
         </button>
-        {message && <p className={styles.message}>{message}</p>}
+        {message.text && (
+          <p className={`${styles.message} ${message.isError ? styles.error : styles.success}`}>
+            {message.text}
+          </p>
+        )}
+        <div className={styles.loginLink}>
+          Already have an account? <Link to="/login">Login here</Link>
+        </div>
       </form>
     </div>
   );

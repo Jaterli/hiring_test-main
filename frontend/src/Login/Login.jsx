@@ -39,6 +39,7 @@ const Login = ({ onLogin }) => {
           value={formData.username}
           onChange={(e) => setFormData({ ...formData, username: e.target.value })}
           className={styles.input}
+          required
         />
         <input
           type="password"
@@ -46,12 +47,17 @@ const Login = ({ onLogin }) => {
           value={formData.password}
           onChange={(e) => setFormData({ ...formData, password: e.target.value })}
           className={styles.input}
+          required
         />
-        <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+        <div className={styles.buttonsContainer}>
           <button type="submit" className={`${styles.button} ${styles.loginButton}`}>
             Login
           </button>
-          <button type="button" onClick={handleRegisterRedirect} className={`${styles.button} ${styles.registerButton}`}>
+          <button 
+            type="button" 
+            onClick={handleRegisterRedirect} 
+            className={`${styles.button} ${styles.registerButton}`}
+          >
             Register
           </button>
         </div>
