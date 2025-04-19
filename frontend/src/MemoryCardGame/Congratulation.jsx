@@ -1,12 +1,13 @@
-import React, { useEffect, useRef, useState } from "react";
+import PropTypes from 'prop-types';
+import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Box } from "@mui/material";
 import { styled } from "@mui/system";
-import background from "../assets/images/celebration.gif"; // Background image
-import bgMusic from "../assets/audio/celebrate.mp3"; // Background music file
-import congratulationImage from "../assets/images/congrats2.png"; // Path to your congratulation image
+import background from "../assets/images/celebration.gif";
+import bgMusic from "../assets/audio/celebrate.mp3";
+import congratulationImage from "../assets/images/congrats2.png";
 
-// Styled Components
+// Styled Components (los mismos para ambos)
 const PixelBox = styled(Box)(({ theme }) => ({
   height: "100vh",
   width: "100vw",
@@ -65,7 +66,7 @@ const PixelButton = styled(Box)(({ theme }) => ({
   },
 }));
 
-const Congratulations = () => {
+const CongratulationsScreen = ({ difficulty = "easy" }) => {
   const navigate = useNavigate();
   const audioRef = useRef(null);
   const [bgVolume, setBgVolume] = useState(
@@ -123,7 +124,7 @@ const Congratulations = () => {
 
   // Handlers for navigation buttons
   const handlePlayAgain = () => {
-    navigate("/memory-card-game");
+    navigate(`/${difficulty}`);
   };
 
   const handleExit = () => {
@@ -138,8 +139,8 @@ const Congratulations = () => {
           src={congratulationImage}
           alt="Congratulations"
           style={{
-            width: "100%",  // Adjust the width as you desire (e.g., 50%)
-            height: "89%", // Maintain the aspect ratio
+            width: "100%",
+            height: "89%",
           }}
         />
       </ImageContainer>
@@ -152,4 +153,14 @@ const Congratulations = () => {
   );
 };
 
-export default Congratulations;
+// PropTypes validation
+CongratulationsScreen.propTypes = {
+  difficulty: PropTypes.oneOf(['easy', 'medium', 'hard']), // Puedes añadir más dificultades si es necesario
+};
+
+// Default props
+CongratulationsScreen.defaultProps = {
+  difficulty: 'easy',
+};
+
+export default CongratulationsScreen;

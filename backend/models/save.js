@@ -7,7 +7,7 @@ const saveSchema = new mongoose.Schema({
   difficulty: {
     type: String,
     required: true,
-    enum: ['Easy', 'Normal', 'Hard'],  
+    enum: ['Easy', 'Medium', 'Hard'],  
   },
   completed: { type: Number, required: true },
   timeTaken: { type: Number, required: true },

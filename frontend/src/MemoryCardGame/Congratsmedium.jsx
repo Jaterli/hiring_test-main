@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Box } from "@mui/material";
 import { styled } from "@mui/system";
@@ -65,7 +65,7 @@ const PixelButton = styled(Box)(({ theme }) => ({
   },
 }));
 
-const Congtnormal = () => {
+const Congtmedium = () => {
   const navigate = useNavigate();
   const audioRef = useRef(null);
   const [bgVolume, setBgVolume] = useState(
@@ -152,4 +152,4 @@ const Congtnormal = () => {
   );
 };
 
-export default Congtnormal;
+export default Congtmedium;

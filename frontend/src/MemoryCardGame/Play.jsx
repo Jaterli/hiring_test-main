@@ -25,7 +25,7 @@ const modalStyles = {
     padding: "40px",
     maxWidth: "600px",
     height: "300px",
-    width: "80%",
+    width: "75%",
     color: "#fff",
     textAlign: "center",
     position: "absolute",
@@ -195,7 +195,7 @@ const Play = () => {
       }
     } else {
       if (difficulty === "red") {
-        navigate("/memory-card-game");
+        navigate("/hard");
       } else if (difficulty === "yellow") {
         navigate("/medium");
       } else if (difficulty === "green") {
@@ -378,7 +378,7 @@ const Play = () => {
             } ${isCalmMode && difficulty === "yellow" ? "calm-selected" : ""}`}
             onMouseEnter={playHoverSound}
           >
-            Normal
+            Medium
           </button>
           <button
             onClick={() => {

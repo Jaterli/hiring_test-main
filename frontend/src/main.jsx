@@ -6,10 +6,8 @@ import Register from './Login/Register';
 import Play from './MemoryCardGame/Play';
 import Easy from './MemoryCardGame/MemoryEasy';
 import Medium from './MemoryCardGame/MemoryMedium';
-import MemoryCardGame from './MemoryCardGame/MemoryCardGame';
+import Hard from './MemoryCardGame/MemoryHard';
 import Congratulations from "./MemoryCardGame/Congratulation";
-import CongtEasy from "./MemoryCardGame/Congratseasy";
-import CongtNormal from "./MemoryCardGame/Congratsnormal";
 
 
 const App = () => {
@@ -29,31 +27,34 @@ const App = () => {
       <Routes>
         <Route path="/login" element={<Login onLogin={handleLogin} />} />
         <Route path="/register" element={<Register />} />
-        <Route path="/congratulations"
+        {/* <Route path="/congratulations"
       element={isAuthenticated ? <Congratulations /> : <Navigate to="/login" />}
-      />
+      /> */}
      
       <Route path="/congt-easy"
-      element={isAuthenticated ? <CongtEasy /> : <Navigate to="/login" />}
+      element={isAuthenticated ? <Congratulations difficulty="easy" /> : <Navigate to="/login" />}
       />
-      <Route path="/congt-normal"
-      element={isAuthenticated ? <CongtNormal /> : <Navigate to="/login" />}
+      <Route path="/congt-medium"
+      element={isAuthenticated ? <Congratulations difficulty="medium" /> : <Navigate to="/login" />}
       />
+      <Route path="/congt-hard"
+      element={isAuthenticated ? <Congratulations difficulty="hard" /> : <Navigate to="/login" />}
+      />      
         <Route path="/easy" 
        element={isAuthenticated ? <Easy /> : <Navigate to="/login" />}
         />
-        <Route path="/medium" 
-         element={isAuthenticated ? <Medium /> : <Navigate to="/login" />}
-         />
-        <Route
-          path="/play"
-          element={isAuthenticated ? <Play /> : <Navigate to="/login" />}
+      <Route path="/medium" 
+        element={isAuthenticated ? <Medium /> : <Navigate to="/login" />}
         />
-  
-        <Route
-          path="/memory-card-game"
-          element={isAuthenticated ? <MemoryCardGame /> : <Navigate to="/login" />}
-        />
+      <Route
+        path="/hard"
+        element={isAuthenticated ? <Hard /> : <Navigate to="/login" />}
+      />        
+      <Route
+        path="/play"
+        element={isAuthenticated ? <Play /> : <Navigate to="/login" />}
+      />
+
         <Route path="/" element={<Navigate to="/login" />} />
       </Routes>
     </Router>
