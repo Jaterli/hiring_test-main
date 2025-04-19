@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-import styles from './Register.module.css';
+import styles from './AuthForms.module.css';
 
 const Register = () => {
   const [formData, setFormData] = useState({ username: '', password: '' });
@@ -22,15 +22,15 @@ const Register = () => {
   };
 
   return (
-    <div className={styles.container}>
-      <form onSubmit={handleSubmit}>
-        <h2>Register</h2>
+    <div className={styles['auth-container']}>
+      <form onSubmit={handleSubmit} className={styles['auth-form']}>
+        <h2 className={styles['auth-title']}>Register</h2>
         <input
           type="text"
           placeholder="Username"
           value={formData.username}
           onChange={(e) => setFormData({ ...formData, username: e.target.value })}
-          className={styles.input}
+          className={styles['auth-input']}
           required
         />
         <input
@@ -38,19 +38,19 @@ const Register = () => {
           placeholder="Password"
           value={formData.password}
           onChange={(e) => setFormData({ ...formData, password: e.target.value })}
-          className={styles.input}
+          className={styles['auth-input']}
           required
         />
-        <button type="submit" className={styles.button}>
+        <button type="submit" className={`${styles['auth-button']} ${styles['register-button']}`}>
           Register
         </button>
         {message.text && (
-          <p className={`${styles.message} ${message.isError ? styles.error : styles.success}`}>
+          <p className={`${styles['auth-message']} ${message.isError ? styles['error-message'] : styles['success-message']}`}>
             {message.text}
           </p>
         )}
-        <div className={styles.loginLink}>
-          Already have an account? <Link to="/login">Login here</Link>
+        <div className={styles['auth-link-container']}>
+          Already have an account? <Link to="/login" className={styles['auth-link']}>Login here</Link>
         </div>
       </form>
     </div>

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import axios from 'axios';
-import styles from './Login.module.css';
+import styles from './AuthForms.module.css';
 
 const Login = ({ onLogin }) => {
   const [formData, setFormData] = useState({ username: '', password: '' });
@@ -25,20 +25,16 @@ const Login = ({ onLogin }) => {
     }
   };
 
-  const handleRegisterRedirect = () => {
-    navigate('/register');
-  };
-
   return (
-    <div className={styles.container}>
-      <form onSubmit={handleSubmit}>
-        <h2>Login</h2>
+    <div className={styles['auth-container']}>
+      <form onSubmit={handleSubmit} className={styles['auth-form']}>
+        <h2 className={styles['auth-title']}>Login</h2>
         <input
           type="text"
           placeholder="Username"
           value={formData.username}
           onChange={(e) => setFormData({ ...formData, username: e.target.value })}
-          className={styles.input}
+          className={styles['auth-input']}
           required
         />
         <input
@@ -46,22 +42,16 @@ const Login = ({ onLogin }) => {
           placeholder="Password"
           value={formData.password}
           onChange={(e) => setFormData({ ...formData, password: e.target.value })}
-          className={styles.input}
+          className={styles['auth-input']}
           required
         />
-        <div className={styles.buttonsContainer}>
-          <button type="submit" className={`${styles.button} ${styles.loginButton}`}>
-            Login
-          </button>
-          <button 
-            type="button" 
-            onClick={handleRegisterRedirect} 
-            className={`${styles.button} ${styles.registerButton}`}
-          >
-            Register
-          </button>
+        <button type="submit" className={`${styles['auth-button']} ${styles['login-button']}`}>
+          Login
+        </button>
+        {error && <p className={`${styles['auth-message']} ${styles['error-message']}`}>{error}</p>}
+        <div className={styles['auth-link-container']}>
+          Not registered yet? <br /><Link to="/register" className={styles['auth-link']}>Create an account</Link>
         </div>
-        {error && <p className={styles.error}>{error}</p>}
       </form>
     </div>
   );
