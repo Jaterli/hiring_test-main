@@ -242,6 +242,16 @@ const Play = () => {
         >
           Settings
         </button>
+        <button
+          className={`game-button ${isCalmMode ? "calm-button" : ""}`}
+          onClick={() => {
+            playClickSound();
+            navigate("/login");
+          }}
+          onMouseEnter={playHoverSound}
+        >
+          Exit
+        </button>        
       </div>
       <Modal
         isOpen={SettingsmodalIsOpen}
